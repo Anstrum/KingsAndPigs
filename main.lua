@@ -4,6 +4,7 @@ require("generalFunctions")
 menu = require("menu")
 
 function love.load()
+	mouse.update()
 	love.window.setMode(screen.width, screen.height)
 	love.window.setTitle(screen.title)
 	menu.load()
@@ -11,8 +12,20 @@ function love.load()
 end
 
 function love.update(dt)
+	mouse.update()
 	if gameState.inMenu then
 		menu.update(dt)
+	end
+end
+
+function love.mousepressed(x, y, click)
+	if gameState.inMenu then
+		menu.mouseclicked(click)
+	end
+end
+function love.mousereleased(x, y, click)
+	if gameState.inMenu then
+		menu.mousereleased(click)
 	end
 end
 
