@@ -57,7 +57,6 @@ function menu.mouseclicked(click)
 		for i = 1, #menu.buttons do
 			if menu.buttons[i].selected then
 				menu.buttons[i].clicked = true
-				print("test")
 			else
 				menu.buttons[i].clicked = false
 			end
@@ -69,7 +68,11 @@ function menu.mousereleased(click)
 		for i = 1, #menu.buttons do
 			if menu.buttons[i].clicked then
 				if menu.buttons[i].name == "Play" then
-					print("test")
+					for i = 1, #menu.buttons do
+						menu.buttons[i].clicked = false
+						menu.buttons[i].selected = false
+					end
+					return "Game"
 				end
 				if menu.buttons[i].name == "Quit" then
 					love.event.quit()
@@ -128,3 +131,12 @@ function menu.loadMap()
 	menu.map = maps.getMenu()
 end
 return menu
+
+--[[
+		{{OPTIONNAL}}
+		-create character animation in the menu:
+			-create character factory and draw it on the menu
+			-create character movements (Q and D) with no collisions
+			-create collisions
+			-create menu interractions with the character
+]]
